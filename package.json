@@ -28,7 +28,7 @@
     "config.schema.json"
   ],
   "bin": {
-    "homebridge-airport-express-playing": "./test.js"
+    "homebridge-airport-express-playing": "./dist/test.js"
   },
   "repository": {
     "type": "git",
