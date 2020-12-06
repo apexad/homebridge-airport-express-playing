@@ -19,5 +19,8 @@ To configure manually, add to the `platforms` section of Homebridge's `config.js
 }
 ```
 
+## Testing
+Use `npx homebridge-airport-express-playing to test if you airport express will be seen by this plugin. Your device must broadcast a txt record that has a `flags=0x04` or `flags=0x804`.
+
 ## Sponsors
 [mbmccormick](https://github.com/mbmccormick)
