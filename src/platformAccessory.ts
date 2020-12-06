@@ -30,7 +30,7 @@ export default class AirportExpress implements AccessoryPlugin {
      .getCharacteristic(this.hap.Characteristic.TargetMediaState) /* ignore attempts to set media state */
      .on(CharacteristicEventTypes.SET, (state: CharacteristicValue, callback: CharacteristicSetCallback) => callback(null));
 
-    this.switchService = new hap.Service.ContactSensor(this.name);
+    this.switchService = new hap.Service.Switch(this.name);
 
     this.informationService = new this.hap.Service.AccessoryInformation()
       .setCharacteristic(this.hap.Characteristic.Manufacturer, 'Apple Inc.')
