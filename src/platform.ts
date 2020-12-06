@@ -14,9 +14,11 @@ export = (api: API) => {
 
 class AirportExpressPlayingPlatform implements StaticPlatformPlugin {
   private readonly log: Logging;
+  private readonly config: PlatformConfig;
 
   constructor(log: Logging, config: PlatformConfig, api: API) {
     this.log = log;
+    this.config = config;
     log.info('platform finished initializing!');
   }
 
@@ -31,9 +33,7 @@ class AirportExpressPlayingPlatform implements StaticPlatformPlugin {
     
     mdnsBrowser.on('update', (data: mDNSReply) => {
       if (data.txt.includes('model=AirPort10,115') && foundAccessories.findIndex(acc => data.txt.includes(`serialNumber=${acc.serialNumber}`)) === -1) {
-        foundAccessories.push(
-          new AirportExpress(hap, mdns, this.log, data)
-        )
+        foundAccessories.push(new AirportExpress(hap, mdns, this.log, this.config, data));
       }
     });
     
