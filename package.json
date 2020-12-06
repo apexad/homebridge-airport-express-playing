@@ -34,6 +34,16 @@
   "bugs": {
     "url": "http://github.com/apexad/homebridge-airport-express-playing/issues"
   },
+  "funding": [
+    {
+      "type": "paypal",
+      "url": "https://www.paypal.me/apexadm"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/apexad"
+    }
+  ],
   "devDependencies": {
     "@types/node": "10.17.19",
     "homebridge": "^1.1.6",
