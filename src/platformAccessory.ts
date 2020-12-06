@@ -7,6 +7,7 @@ export default class AirportExpress implements AccessoryPlugin {
   public readonly serialNumber: string;
   private readonly speakerService: Service;
   private readonly informationService: Service;
+  private readonly switchService: Service;
   private readonly hap: HAP;
   private readonly mdns: any;
 
@@ -28,6 +29,8 @@ export default class AirportExpress implements AccessoryPlugin {
     this.speakerService
      .getCharacteristic(this.hap.Characteristic.TargetMediaState) /* ignore attempts to set media state */
      .on(CharacteristicEventTypes.SET, (state: CharacteristicValue, callback: CharacteristicSetCallback) => callback(null));
+
+    this.switchService = new hap.Service.ContactSensor(this.name);
 
     this.informationService = new this.hap.Service.AccessoryInformation()
       .setCharacteristic(this.hap.Characteristic.Manufacturer, 'Apple Inc.')
@@ -68,7 +71,14 @@ export default class AirportExpress implements AccessoryPlugin {
     this.speakerService
       .setCharacteristic(this.hap.Characteristic.TargetMediaState, state)
       .setCharacteristic(this.hap.Characteristic.CurrentMediaState, state);
+    this.switchService
+      .setCharacteristic(
+        this.hap.Characteristic.On,
+        state ===this.hap.Characteristic.CurrentMediaState.PLAY
+        ? true
+        : false
+      )
   }
 
-  getServices(): Service[] { return [ this.informationService, this.speakerService ]; }
+  getServices(): Service[] { return [ this.informationService, this.speakerService, this.switchService ]; }
 }
