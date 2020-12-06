@@ -27,9 +27,6 @@
     "dist",
     "config.schema.json"
   ],
-  "bin": {
-    "homebridge-airport-express-playing": "./test.js"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/apexad/homebridge-airport-express-playing"
