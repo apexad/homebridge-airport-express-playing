@@ -1,0 +1,17 @@
+{
+  "pluginAlias": "AirportExpressPlaying",
+  "pluginType": "platform",
+  "singular": true,
+  "headerDisplay": "There is no configuration needed for this plugin, it will auto-detect any Airport Express devices and create accessories for them.",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Name",
+        "type": "string",
+        "default": "Airport Express Playing Platform",
+        "required": true
+      }
+    }
+  }
+}

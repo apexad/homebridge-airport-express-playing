@@ -1,0 +1,46 @@
+{
+  "name": "homebridge-airport-express-playing",
+  "version": "1.0.0",
+  "description": "Homebridge plugin that creates a smart speaker accessory that shows playing/paused for airport express devices.",
+  "main": "dist/platform.js",
+  "scripts": {
+    "clean": "rimraf ./dist",
+    "build": "rimraf ./dist && tsc",
+    "prepublishOnly": "npm run build",
+    "postpublish": "npm run clean",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "standard-version"
+  },
+  "author": {
+    "name": "Alex 'apexad' Martin"
+  },
+  "engines": {
+    "node": ">=10.17.0",
+    "homebridge": ">=1.0.0"
+  },
+  "keywords": [
+    "homebridge-plugin"
+  ],
+  "license": "MIT",
+  "files": [
+    "LICENSE",
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/apexad/homebridge-airport-express-playing"
+  },
+  "bugs": {
+    "url": "http://github.com/apexad/homebridge-airport-express-playing/issues"
+  },
+  "devDependencies": {
+    "@types/node": "10.17.19",
+    "homebridge": "^1.1.6",
+    "rimraf": "^3.0.2",
+    "typescript": "^3.9.7",
+    "standard-version": "^9.0.0"
+  },
+  "dependencies": {
+    "mdns-js": "^1.0.3"
+  }
+}
