@@ -24,7 +24,8 @@
   "license": "MIT",
   "files": [
     "LICENSE",
-    "dist"
+    "dist",
+    "config.schema.json"
   ],
   "repository": {
     "type": "git",
