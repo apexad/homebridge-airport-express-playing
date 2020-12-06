@@ -30,7 +30,7 @@ class AirportExpressPlayingPlatform implements StaticPlatformPlugin {
     });
     
     mdnsBrowser.on('update', (data: mDNSReply) => {
-      if (data.txt.includes('model=AirPort10,115')) {
+      if (data.txt.includes('model=AirPort10,115') && foundAccessories.findIndex(acc => data.txt.includes(`serialNumber=${acc.serialNumber}`)) === -1) {
         foundAccessories.push(
           new AirportExpress(hap, mdns, this.log, data)
         )

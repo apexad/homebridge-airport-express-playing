@@ -4,7 +4,7 @@ import { mDNSReply } from './settings';
 export default class AirportExpress implements AccessoryPlugin {
   private readonly log: Logging;
   private readonly name: string;
-  private readonly serialNumber: string;
+  public readonly serialNumber: string;
   private readonly speakerService: Service;
   private readonly informationService: Service;
   private readonly hap: HAP;
