@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/apexad/homebridge-airport-express-playing/compare/v1.1.3...v1.2.0) (2020-12-06)
+
+
+### Features
+
+* re-enable adding of all airport express and fix check for playing/not playing ([16bc5a6](https://github.com/apexad/homebridge-airport-express-playing/commit/16bc5a62d4a5b9dbcd3d73a0ec1560a9111780ce))
+
 ### [1.1.3](https://github.com/apexad/homebridge-airport-express-playing/compare/v1.1.2...v1.1.3) (2020-12-06)
 
 
