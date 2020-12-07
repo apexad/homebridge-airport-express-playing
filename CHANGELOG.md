@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/apexad/homebridge-airport-express-playing/compare/v1.4.0-beta.3...v1.4.0) (2020-12-07)
+
+
+### Features
+
+* make switch optional with config option ([66475cb](https://github.com/apexad/homebridge-airport-express-playing/commit/66475cb0b75592fc9aab43149c663eb0921219ac))
+
 ## [1.3.0](https://github.com/apexad/homebridge-airport-express-playing/compare/v1.2.0...v1.3.0) (2020-12-06)
 
 
