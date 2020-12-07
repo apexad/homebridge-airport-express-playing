@@ -24,7 +24,7 @@ export default class AirportExpress implements AccessoryPlugin {
   constructor(hap: HAP, mdns: any, log: Logging, config: PlatformConfig, data: mDNSReply) {
     this.log = log;
     this.name = data.fullname.replace('._airplay._tcp.local', '');
-    this.showSwitch = config.showSwitch || true;
+    this.showSwitch = config.hasOwnProperty('showSwitch') ? config.showSwitch : true;
     this.serialNumber = data.txt.find((str) => str.indexOf('serialNumber') > -1)?.replace('serialNumber=', '') || '';
     this.hap = hap;
     this.mdns = mdns;
