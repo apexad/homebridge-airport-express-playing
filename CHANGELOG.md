@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://github.com/apexad/homebridge-airport-express-playing/compare/v1.4.0...v1.4.1) (2020-12-07)
+
+
+### Bug Fixes
+
+* showSwitch value check corrected ([745630d](https://github.com/apexad/homebridge-airport-express-playing/commit/745630deb786de362647c674a37c0f7b713a1c09))
+
 ## [1.4.0](https://github.com/apexad/homebridge-airport-express-playing/compare/v1.4.0-beta.3...v1.4.0) (2020-12-07)
 
 
