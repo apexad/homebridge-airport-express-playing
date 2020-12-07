@@ -1,4 +1,13 @@
-import { AccessoryPlugin, CharacteristicSetCallback, CharacteristicValue, HAP, Logging, Service, CharacteristicEventTypes } from "homebridge";
+import {
+  AccessoryPlugin,
+  CharacteristicSetCallback,
+  CharacteristicValue,
+  HAP,
+  Logging,
+  Service,
+  CharacteristicEventTypes,
+  PlatformConfig,
+} from "homebridge";
 import { mDNSReply } from './settings';
 
 export default class AirportExpress implements AccessoryPlugin {
@@ -7,13 +16,15 @@ export default class AirportExpress implements AccessoryPlugin {
   public readonly serialNumber: string;
   private readonly speakerService: Service;
   private readonly informationService: Service;
-  private readonly switchService: Service;
+  private readonly switchService!: Service;
   private readonly hap: HAP;
   private readonly mdns: any;
+  private readonly showSwitch: boolean;
 
-  constructor(hap: HAP, mdns: any, log: Logging, data: mDNSReply) {
+  constructor(hap: HAP, mdns: any, log: Logging, config: PlatformConfig, data: mDNSReply) {
     this.log = log;
     this.name = data.fullname.replace('._airplay._tcp.local', '');
+    this.showSwitch = config.showSwitches || true;
     this.serialNumber = data.txt.find((str) => str.indexOf('serialNumber') > -1)?.replace('serialNumber=', '') || '';
     this.hap = hap;
     this.mdns = mdns;
@@ -30,7 +41,9 @@ export default class AirportExpress implements AccessoryPlugin {
      .getCharacteristic(this.hap.Characteristic.TargetMediaState) /* ignore attempts to set media state */
      .on(CharacteristicEventTypes.SET, (state: CharacteristicValue, callback: CharacteristicSetCallback) => callback(null));
 
-    this.switchService = new hap.Service.Switch(this.name);
+    if(this.showSwitch) {
+      this.switchService = new hap.Service.Switch(this.name);
+    }
 
     this.informationService = new this.hap.Service.AccessoryInformation()
       .setCharacteristic(this.hap.Characteristic.Manufacturer, 'Apple Inc.')
@@ -71,13 +84,15 @@ export default class AirportExpress implements AccessoryPlugin {
     this.speakerService
       .setCharacteristic(this.hap.Characteristic.TargetMediaState, state)
       .setCharacteristic(this.hap.Characteristic.CurrentMediaState, state);
-    this.switchService
+    if (this.showSwitch) {
+      this.switchService
       .setCharacteristic(
         this.hap.Characteristic.On,
         state ===this.hap.Characteristic.CurrentMediaState.PLAY
         ? true
         : false
       )
+    }
   }
 
   getServices(): Service[] { return [ this.informationService, this.speakerService, this.switchService ]; }
