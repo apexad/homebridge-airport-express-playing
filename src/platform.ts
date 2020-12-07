@@ -1,6 +1,16 @@
-import { AccessoryPlugin, API, HAP, Logging, PlatformConfig, StaticPlatformPlugin } from "homebridge";
+import {
+  AccessoryPlugin,
+  API,
+  HAP,
+  Logging,
+  PlatformConfig,
+  StaticPlatformPlugin,
+} from "homebridge";
 import mdns from 'mdns-js';
-import { mDNSReply } from './settings';
+import {
+  mDNSReply,
+  PLATFORM_NAME,
+} from './settings';
 import AirportExpress from "./platformAccessory";
 
 mdns.excludeInterface('0.0.0.0')
@@ -9,7 +19,7 @@ let hap: HAP;
 
 export = (api: API) => {
   hap = api.hap;
-  api.registerPlatform('AirportExpressPlaying', AirportExpressPlayingPlatform);
+  api.registerPlatform(PLATFORM_NAME, AirportExpressPlayingPlatform);
 };
 
 class AirportExpressPlayingPlatform implements StaticPlatformPlugin {
@@ -46,6 +56,5 @@ class AirportExpressPlayingPlatform implements StaticPlatformPlugin {
       },
       5000
     );
-    
   }
 }
