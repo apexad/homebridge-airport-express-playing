@@ -12,7 +12,7 @@
         "default": "Airport Express Playing Platform",
         "required": true
       },
-      "showSwitches": {
+      "showSwitch": {
         "title": "Show Switch (for home automations)",
         "type": "boolean",
         "default": true,
