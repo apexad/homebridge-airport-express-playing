@@ -1,7 +1,7 @@
 # homebridge-airport-express-playing
 
 [![mit license](https://badgen.net/badge/license/MIT/red)](https://github.com/apexad/homebridge-airport-express-playing/blob/master/LICENSE)
-[![npm](https://badgen.net/npm/v/homebridge-airport-express-playing)](https://www.npmjs.com/package/homebridge-airport-express-playing)
+[![npm](https://img.shields.io/npm/v/homebridge-airport-express-playing)](https://www.npmjs.com/package/homebridge-airport-express-playing)
 [![npm](https://badgen.net/npm/dt/homebridge-airport-express-playing)](https://www.npmjs.com/package/homebridge-airport-express-playing)
 [![donate](https://badgen.net/badge/donate/paypal/91BE09)](https://www.paypal.me/apexadm)
 
