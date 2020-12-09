@@ -1,6 +1,6 @@
 {
   "name": "homebridge-airport-express-playing",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Homebridge plugin that creates a smart speaker accessory that shows playing/paused for airport express devices.",
   "main": "dist/platform.js",
   "scripts": {

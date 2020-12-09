@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.4](https://github.com/apexad/homebridge-airport-express-playing/compare/v1.4.3...v1.4.4) (2020-12-09)
+
+
+### Bug Fixes
+
+* change manufacturer to be clear this is a homebridge plugin and not an Apple device ([cf786f7](https://github.com/apexad/homebridge-airport-express-playing/commit/cf786f74d8464e5a7f3c7bb407b439143f30a1ca))
+
 ### [1.4.3](https://github.com/apexad/homebridge-airport-express-playing/compare/v1.4.2...v1.4.3) (2020-12-09)
 
 
