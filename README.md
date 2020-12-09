@@ -5,7 +5,7 @@
 [![npm](https://badgen.net/npm/dt/homebridge-airport-express-playing)](https://www.npmjs.com/package/homebridge-airport-express-playing)
 [![donate](https://badgen.net/badge/donate/paypal/91BE09)](https://www.paypal.me/apexadm)
 
-[Homebridge](https://github.com/homebridge/homebridge) plugin that creates a smart speaker accessory that shows playing/paused for airport express devices. Also creates a switch that can be used to trigger home automations.
+[Homebridge](https://github.com/homebridge/homebridge) plugin that creates a smart speaker accessory that shows playing/paused for airport express devices and has optional switch that can be used to trigger home automations.
 
 ## Configuration
 This easiest way to use this plugin is to use [homebridge-config-ui-x](https://www.npmjs.com/package/homebridge-config-ui-x).  
