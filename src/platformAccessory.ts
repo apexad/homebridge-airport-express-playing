@@ -44,7 +44,7 @@ export default class AirportExpress implements AccessoryPlugin {
     if(this.showSwitch) { this.switchService = new hap.Service.Switch(this.name); }
 
     this.informationService = new this.hap.Service.AccessoryInformation()
-      .setCharacteristic(this.hap.Characteristic.Manufacturer, 'Apple Inc.')
+      .setCharacteristic(this.hap.Characteristic.Manufacturer, 'Apple Inc. via apexad')
       .setCharacteristic(this.hap.Characteristic.Model, 'AirPort10,115')
       .setCharacteristic(this.hap.Characteristic.SerialNumber, this.serialNumber);
 
