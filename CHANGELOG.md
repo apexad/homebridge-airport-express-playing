@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.3](https://github.com/apexad/homebridge-airport-express-playing/compare/v1.4.2...v1.4.3) (2020-12-09)
+
+
+### Bug Fixes
+
+* remove broken test file ([3087e09](https://github.com/apexad/homebridge-airport-express-playing/commit/3087e09911a1300f59e61923bf698e287de12302))
+* use STOPPED if Airport Express not connected/Playing, INTERRUPTED if error ([6b1c32a](https://github.com/apexad/homebridge-airport-express-playing/commit/6b1c32a1c17f87b568e0ea6235ac1db5a27df229))
+
 ### [1.4.2](https://github.com/apexad/homebridge-airport-express-playing/compare/v1.4.1...v1.4.2) (2020-12-08)
 
 
