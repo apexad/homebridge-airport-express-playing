@@ -57,11 +57,11 @@ export default class AirportExpress implements AccessoryPlugin {
   convertMediaState(mDNS_TXT_record: Array<string>) {
     const bit11 = (parseInt(mDNS_TXT_record.find((r: string) => r.indexOf('flag') > -1)!.replace('flags=', ''), 16).toString(2)).padStart(12, '0').charAt(0);
     if (bit11 === '0') {
-      return this.hap.Characteristic.CurrentMediaState.PAUSE;
+      return this.hap.Characteristic.CurrentMediaState.STOP;
     } else if (bit11 === '1') { /* bit11 correspponds to playing https://github.com/openairplay/airplay-spec/blob/master/src/status_flags.md */
       return this.hap.Characteristic.CurrentMediaState.PLAY;
     }
-    return this.hap.Characteristic.CurrentMediaState.STOP;
+    return this.hap.Characteristic.CurrentMediaState.INTERRUPTED;
   }
 
   updateMediaState() {
