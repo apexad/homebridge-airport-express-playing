@@ -3,6 +3,7 @@
 [![mit license](https://badgen.net/badge/license/MIT/red)](https://github.com/apexad/homebridge-airport-express-playing/blob/master/LICENSE)
 [![npm](https://img.shields.io/npm/v/homebridge-airport-express-playing)](https://www.npmjs.com/package/homebridge-airport-express-playing)
 [![npm](https://badgen.net/npm/dt/homebridge-airport-express-playing)](https://www.npmjs.com/package/homebridge-airport-express-playing)
+[![verified-by-homebridge](https://badgen.net/badge/homebridge/verified/purple)](https://github.com/homebridge/homebridge/wiki/Verified-Plugins)
 [![donate](https://badgen.net/badge/donate/paypal/91BE09)](https://www.paypal.me/apexadm)
 
 [Homebridge](https://github.com/homebridge/homebridge) plugin that creates a smart speaker accessory that shows playing/paused for airport express devices and has optional switch that can be used to trigger home automations.
