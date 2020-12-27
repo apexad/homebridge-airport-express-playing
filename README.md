@@ -21,6 +21,9 @@ To configure manually, add to the `platforms` section of Homebridge's `config.js
 }
 ```
 
+## Notes
+1. May not work when AirPlaying from iTunes running on Win10
+
 ## Sponsors
 [mbmccormick](https://github.com/mbmccormick)  
 [jsiegenthaler](https://github.com/jsiegenthaler) - orginal idea to use airport express txt record [posted to reddit](https://www.reddit.com/r/homebridge/comments/jxt9le/added_a_switch_in_homebridge_to_show_if_airport/)
