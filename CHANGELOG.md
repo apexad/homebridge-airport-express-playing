@@ -9,13 +9,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 * wrap mDNS calls in try...catch fixes [#7](https://github.com/apexad/homebridge-airport-express-playing/issues/7) ([4f4565b](https://github.com/apexad/homebridge-airport-express-playing/commit/4f4565bff8019f22509ddbe81102eb86d6766fdb))
 
-### [1.4.6](https://github.com/apexad/homebridge-airport-express-playing/compare/v1.4.5...v1.4.6) (2021-01-14)
-
-
-### Bug Fixes
-
-* wrap mDNS calls in try...catch fixes [#7](https://github.com/apexad/homebridge-airport-express-playing/issues/7) ([8a3f619](https://github.com/apexad/homebridge-airport-express-playing/commit/8a3f61962584813b43dbb0f847f76eedf8b0862a))
-
 ### [1.4.5](https://github.com/apexad/homebridge-airport-express-playing/compare/v1.4.4...v1.4.5) (2020-12-16)
 
 ### [1.4.4](https://github.com/apexad/homebridge-airport-express-playing/compare/v1.4.3...v1.4.4) (2020-12-09)
