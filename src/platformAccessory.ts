@@ -67,17 +67,21 @@ export default class AirportExpress implements AccessoryPlugin {
   updateMediaState() {
     this.log.debug(`Updating Airport Exrpess with serial number ${this.serialNumber}`);
     const mdnsBrowser = this.mdns.createBrowser(this.mdns.tcp("airplay"));
+    try {
+      mdnsBrowser.on('ready', () => mdnsBrowser.discover());
+      mdnsBrowser.on('update', (data: mDNSReply) => {
+        const foundSerialNumber = data.txt.find((str) => str.indexOf('serialNumber') > -1)?.replace('serialNumber=', '');
 
-    mdnsBrowser.on('ready', () => mdnsBrowser.discover());
-    mdnsBrowser.on('update', (data: mDNSReply) => {
-      const foundSerialNumber = data.txt.find((str) => str.indexOf('serialNumber') > -1)?.replace('serialNumber=', '');
-
-      if (data.txt.includes('model=AirPort10,115') && foundSerialNumber && this.serialNumber === foundSerialNumber) {
-        this.log.debug(`txt record contents: ${data.txt}`)
-        this.setMediaState(this.convertMediaState(data.txt));
-        mdnsBrowser.stop();
-      }
-    });
+        if (data.txt.includes('model=AirPort10,115') && foundSerialNumber && this.serialNumber === foundSerialNumber) {
+          this.log.debug(`txt record contents: ${data.txt}`)
+          this.setMediaState(this.convertMediaState(data.txt));
+          mdnsBrowser.stop();
+        }
+      });
+    } catch(error) {
+      this.log.error(`Unable to check mDNS for ${this.name}`);
+      this.log.debug(error);
+    }
   }
 
   setMediaState(state: CharacteristicValue) {
