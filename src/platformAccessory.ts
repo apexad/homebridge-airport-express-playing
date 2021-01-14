@@ -41,9 +41,7 @@ export default class AirportExpress implements AccessoryPlugin {
      .getCharacteristic(this.hap.Characteristic.TargetMediaState) /* ignore attempts to set media state */
      .on(CharacteristicEventTypes.SET, (state: CharacteristicValue, callback: CharacteristicSetCallback) => callback(null));
 
-    if(this.showSwitch) {
-      this.switchService = new hap.Service.Switch(this.name);
-    }
+    if(this.showSwitch) { this.switchService = new hap.Service.Switch(this.name); }
 
     this.informationService = new this.hap.Service.AccessoryInformation()
       .setCharacteristic(this.hap.Characteristic.Manufacturer, 'Apple Inc. via apexad')
@@ -57,11 +55,12 @@ export default class AirportExpress implements AccessoryPlugin {
   }
 
   convertMediaState(mDNS_TXT_record: Array<string>) {
-    const pid = mDNS_TXT_record.find((recordLine: string) => recordLine.indexOf('gid') > -1);
-    const gid = mDNS_TXT_record.find((recordLine: string) => recordLine.indexOf('pid') > -1);
-
-    if (pid && (pid !== gid)) { return this.hap.Characteristic.CurrentMediaState.STOP; }
-    else if (pid && (pid === gid)) { return this.hap.Characteristic.CurrentMediaState.PLAY; }
+    const bit11 = (parseInt(mDNS_TXT_record.find((r: string) => r.indexOf('flag') > -1)!.replace('flags=', ''), 16).toString(2)).padStart(12, '0').charAt(0);
+    if (bit11 === '0') {
+      return this.hap.Characteristic.CurrentMediaState.STOP;
+    } else if (bit11 === '1') { /* bit11 correspponds to playing https://github.com/openairplay/airplay-spec/blob/master/src/status_flags.md */
+      return this.hap.Characteristic.CurrentMediaState.PLAY;
+    }
     return this.hap.Characteristic.CurrentMediaState.INTERRUPTED;
   }
 
@@ -69,21 +68,16 @@ export default class AirportExpress implements AccessoryPlugin {
     this.log.debug(`Updating Airport Exrpess with serial number ${this.serialNumber}`);
     const mdnsBrowser = this.mdns.createBrowser(this.mdns.tcp("airplay"));
 
-    try {
-      mdnsBrowser.on('ready', () => mdnsBrowser.discover());
-      mdnsBrowser.on('update', (data: mDNSReply) => {
-        const foundSerialNumber = data.txt.find((str) => str.indexOf('serialNumber') > -1)?.replace('serialNumber=', '');
+    mdnsBrowser.on('ready', () => mdnsBrowser.discover());
+    mdnsBrowser.on('update', (data: mDNSReply) => {
+      const foundSerialNumber = data.txt.find((str) => str.indexOf('serialNumber') > -1)?.replace('serialNumber=', '');
 
-        if (data.txt.includes('model=AirPort10,115') && foundSerialNumber && this.serialNumber === foundSerialNumber) {
-          this.log.debug(`txt record contents: ${data.txt}`)
-          this.setMediaState(this.convertMediaState(data.txt));
-          mdnsBrowser.stop();
-        }
-      });
-    } catch(error) {
-      this.log.error(`Unable to fetch status for ${this.name} via mDNS`);
-      this.log.debug(error);
-    }
+      if (data.txt.includes('model=AirPort10,115') && foundSerialNumber && this.serialNumber === foundSerialNumber) {
+        this.log.debug(`txt record contents: ${data.txt}`)
+        this.setMediaState(this.convertMediaState(data.txt));
+        mdnsBrowser.stop();
+      }
+    });
   }
 
   setMediaState(state: CharacteristicValue) {
