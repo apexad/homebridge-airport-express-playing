@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.9](https://github.com/apexad/homebridge-airport-express-playing/compare/v1.4.8...v1.4.9) (2021-02-22)
+
+
+### Bug Fixes
+
+* clarified use of mDNS data in description/README ([33d5096](https://github.com/apexad/homebridge-airport-express-playing/commit/33d5096600585571d30323f082bddcb08b02d5b7))
+* correcrt typo in logs ([8fff343](https://github.com/apexad/homebridge-airport-express-playing/commit/8fff343c60684b6a26ecc641cc0ef796a366c08c))
+
 ### [1.4.8](https://github.com/apexad/homebridge-airport-express-playing/compare/v1.4.7...v1.4.8) (2021-01-14)
 
 
