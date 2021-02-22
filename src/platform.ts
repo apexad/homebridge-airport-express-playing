@@ -37,7 +37,7 @@ class AirportExpressPlayingPlatform implements StaticPlatformPlugin {
     const mdnsBrowser = mdns.createBrowser(mdns.tcp("airplay"));
 
     mdnsBrowser.on('ready', () => {
-      this.log('Seaarching for Airport Express devices')
+      this.log('Searching for Airport Express devices')
       mdnsBrowser.discover();
     });
     
