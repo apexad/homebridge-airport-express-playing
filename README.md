@@ -22,7 +22,8 @@ To configure manually, add to the `platforms` section of Homebridge's `config.js
 ```
 
 ## Notes
-1. May not work when AirPlaying from iTunes running on Win10
+1. Will not work when AirPlaying from iTunes running on Win10
+2. Will not work in many situations involving grouped accessories due to limitations in mDNS
 
 ## Sponsors
 [mbmccormick](https://github.com/mbmccormick)  

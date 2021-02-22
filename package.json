@@ -1,7 +1,7 @@
 {
   "name": "homebridge-airport-express-playing",
   "version": "1.4.8",
-  "description": "Homebridge plugin that creates a smart speaker accessory that shows playing/paused for airport express devices.",
+  "description": "Homebridge plugin that uses mDNS request data to show a smart speaker for playing/paused for airport express devices.",
   "main": "dist/platform.js",
   "scripts": {
     "clean": "rimraf ./dist",
