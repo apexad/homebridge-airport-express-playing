@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/apexad/homebridge-airport-express-playing/compare/v1.4.9...v2.0.0) (2021-04-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* acessories will reset 1 last time and break automations, but should be cached after that
+
+* switched plugin to be a dynamic platform (from static) so accesories will persist on homebridge restarts, fixes [#8](https://github.com/apexad/homebridge-airport-express-playing/issues/8) ([5c9c442](https://github.com/apexad/homebridge-airport-express-playing/commit/5c9c4428d0b6fb81026ed8b98bf9f3f5166c9667))
+
 ### [1.4.9](https://github.com/apexad/homebridge-airport-express-playing/compare/v1.4.8...v1.4.9) (2021-02-22)
 
 
