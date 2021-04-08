@@ -1,60 +1,82 @@
 import {
-  AccessoryPlugin,
   API,
-  HAP,
-  Logging,
+  DynamicPlatformPlugin,
+  Logger,
+  PlatformAccessory,
   PlatformConfig,
-  StaticPlatformPlugin,
-} from "homebridge";
+  Service,
+  Characteristic,
+} from 'homebridge';
 import mdns from 'mdns-js';
 import {
   mDNSReply,
   PLATFORM_NAME,
+  PLUGIN_NAME,
 } from './settings';
-import AirportExpress from "./platformAccessory";
+import AirportExpress from './platformAccessory';
 
-mdns.excludeInterface('0.0.0.0')
+export default class AirportExpressPlayingPlatform implements DynamicPlatformPlugin {
+  public readonly Service: typeof Service = this.api.hap.Service;
+  public readonly Characteristic: typeof Characteristic = this.api.hap.Characteristic;
 
-let hap: HAP;
+  public readonly accessories: PlatformAccessory[] = [];
 
-export = (api: API) => {
-  hap = api.hap;
-  api.registerPlatform(PLATFORM_NAME, AirportExpressPlayingPlatform);
-};
-
-class AirportExpressPlayingPlatform implements StaticPlatformPlugin {
-  private readonly log: Logging;
-  private readonly config: PlatformConfig;
-
-  constructor(log: Logging, config: PlatformConfig, api: API) {
-    this.log = log;
+  constructor(
+    public readonly log: Logger,
+    public readonly config: PlatformConfig,
+    public readonly api: API,
+  ) {
     this.config = config;
-    log.info('platform finished initializing!');
+    this.log.debug('Finished initializing platform:', this.config.name);
+
+    this.api.on('didFinishLaunching', () => {
+      log.debug('Executed didFinishLaunching callback');
+      this.discoverDevices();
+    });
   }
 
-  accessories(callback: (foundAccessories: AccessoryPlugin[]) => void): void {
-    const foundAccessories: AirportExpress[] = [];
+  configureAccessory(accessory: PlatformAccessory) {
+    this.log.info('Loading accessory from cache:', accessory.displayName);
+    this.accessories.push(accessory);
+  }
+
+  discoverDevices() {
     const mdnsBrowser = mdns.createBrowser(mdns.tcp("airplay"));
 
     mdnsBrowser.on('ready', () => {
-      this.log('Searching for Airport Express devices')
+      this.log.info('Searching for Airport Express devices')
       mdnsBrowser.discover();
     });
     
     mdnsBrowser.on('update', (data: mDNSReply) => {
-      if (data.txt.includes('model=AirPort10,115') && foundAccessories.findIndex(acc => data.txt.includes(`serialNumber=${acc.serialNumber}`)) === -1) {
-        foundAccessories.push(
-          new AirportExpress(hap, mdns, this.log, this.config, data)
-        )
+      if (data && data.txt && data.txt.includes('model=AirPort10,115')) {
+        const serialNumber = data.txt.find((str) => str.indexOf('serialNumber') > -1)?.replace('serialNumber=', '') || '';
+        const displayName = data.fullname.replace('._airplay._tcp.local', '');
+        const uuid = this.api.hap.uuid.generate(serialNumber);
+
+        const existingAccessory = this.accessories.find(accessory => accessory.UUID === uuid);
+
+        if (existingAccessory) {
+          // the accessory already exists
+          this.log.info('Restoring existing accessory from cache:', existingAccessory.displayName);
+          new AirportExpress(this, existingAccessory);
+        } else {
+          this.log.info('Adding new accessory:', displayName);
+
+          const accessory = new this.api.platformAccessory(displayName, uuid);
+          accessory.context.device = {
+            serialNumber,
+            displayName,
+            data,
+          };
+
+          new AirportExpress(this, accessory);
+
+          this.api.registerPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, [accessory]);
+        }
       }
     });
-    
-    setTimeout(
-      () => {
-        mdnsBrowser.stop();
-        callback(foundAccessories);
-      },
-      5000
-    );
+
+    setTimeout(() => mdnsBrowser.stop(), 5000);
   }
 }
