@@ -57,13 +57,22 @@ export default class ExamplePlatformAccessory {
           if (data.txt.includes('model=AirPort10,115') && foundSerialNumber && this.serialNumber === foundSerialNumber) {
             this.platform.log.debug(`txt record contents: ${data.txt}`)
             this.setMediaState(this.convertMediaState(data.txt));
+            mdnsBrowser.stop();
           }
         }
       } catch(error) {
         this.platform.log.error(`Error in mDNS check, found invalid record`);
         this.platform.log.debug(error);
+        mdnsBrowser.stop();
       }
-      setTimeout(() => mdnsBrowser.stop(), 5000);
+      setTimeout(() => {
+        try {
+          // make sure mdnsBrowser was stopped if it was not stopped above
+          mdnsBrowser.stop();
+        } catch(err) {
+          this.platform.log.debug(`mdns browser for stop via timeout error: ${err}`);
+        }
+      }, 5000);
     });
   }
 
