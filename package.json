@@ -1,6 +1,6 @@
 {
   "name": "homebridge-airport-express-playing",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Homebridge plugin that uses mDNS request data to show a smart speaker for playing/paused for airport express devices.",
   "main": "dist/index.js",
   "scripts": {

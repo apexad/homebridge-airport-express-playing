@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/apexad/homebridge-airport-express-playing/compare/v2.0.0...v2.0.1) (2021-04-08)
+
+
+### Bug Fixes
+
+* stop mdns browser as soon as possible, timeout is last resort ([c3c611e](https://github.com/apexad/homebridge-airport-express-playing/commit/c3c611ef1bcc89ce1d602a3bae7b360f877eda9b))
+
 ## [2.0.0](https://github.com/apexad/homebridge-airport-express-playing/compare/v1.4.9...v2.0.0) (2021-04-08)
 
 
